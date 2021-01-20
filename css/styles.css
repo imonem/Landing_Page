@@ -74,7 +74,8 @@ section {
     flex-basis: 50%;
 }
 .navbar__menu ul {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     font-family: 'Fira Sans', sans-serif;
     padding-left: 0;
     margin: 0;
@@ -83,10 +84,12 @@ section {
 
 .navbar__menu li {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .navbar__menu .menu__link {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
@@ -95,6 +98,17 @@ section {
 
 .navbar__menu .menu__link:hover {
     background: #333;
+    color: #fff;
+    transition: ease 0.3s all;
+}
+.navbar__menu .menu__link .your-active-class {
+    background: #456;
+    color: #fff;
+    transition: ease 0.3s all;
+}
+
+a.active {
+    background: darkmagenta;
     color: #fff;
     transition: ease 0.3s all;
 }

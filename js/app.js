@@ -61,16 +61,30 @@ const inViewPort = (element) => {
 };
 
 const setActive = () => {
-    /**loop to go through sections to check if client rectangle is in viewport */
-    for (let section of sections) {
-        /**add activeclass if in view port else remove */
-        if (inViewPort(section) < 320 && inViewPort(section) >= -320) {
-            section.classList.add(`your-active-class`);
-        } else {
-            section.classList.remove(`your-active-class`);
+        /**loop to go through sections to check if client rectangle is in viewport */
+        for (let section of sections) {
+            /**add activeclass if in view port else remove */
+            if (inViewPort(section) < 320 && inViewPort(section) >= -320) {
+                section.classList.add(`your-active-class`);
+                /**add active class to the menu anchor on section in viewport */
+                let currentMenuAnchors = document.getElementsByTagName('a');
+                let listItem = section.dataset.nav;
+                /**iterate over menu items comparing the current section's data.nav to the anchor's .innerText */
+                for (let currentMenuAnchor of currentMenuAnchors) {
+                    if (listItem == currentMenuAnchor.innerText) {
+                        console.log(currentMenuAnchor.innerText);
+                        currentMenuAnchor.classList.add(`active`);
+                    } else {
+                        currentMenuAnchor.classList.remove(`active`);
+                    }
+                }
+            } else { //this else removes the class from non active sections
+                section.classList.remove(`your-active-class`);
+            }
         }
-    }
-};
+    };
+
+
 
 /** adding section after page has loaded using an event listener on dblclick!  */
 const addNewSection = () => {
@@ -99,6 +113,7 @@ const addNewSectionToMenu = (newSection) => {
     // newSectionMenuItem.className = 'menu__link';
     document.querySelector('#navbar__list').append(newSectionMenuItem);
 };
+
 /**
  * End Helper Functions
  * Begin Main Functions
